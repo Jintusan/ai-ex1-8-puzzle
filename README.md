@@ -33,7 +33,7 @@ python experiment.py     # the full experiment, takes about 1-3 minutes
 ## Representation
 
 * A state is a tuple of 9 numbers, read row by row, `0` = empty field.
-* Goal state: `(0, 1, 2, 3, 4, 5, 6, 7, 8)` (empty field top left, as on the exercise slide).
+* Goal state: `(0, 1, 2, 3, 4, 5, 6, 7, 8)` (empty field top left, as on the task slide).
 * Start state from the slides: `(7, 2, 4, 5, 0, 6, 8, 3, 1)`.
 
 ## Design decisions
