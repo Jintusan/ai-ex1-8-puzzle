@@ -17,6 +17,7 @@ def hamming(state):
     Input:    state - tuple of 9 numbers (0 = empty field)
     Output:   number of tiles that are not on their goal position
     Function: Heuristic h1 (misplaced tiles). The empty field is not counted.
+    Cost:     O(1) - one comparison for each of the 9 fields
     """
     count = 0
     for i in range(9):
@@ -31,6 +32,8 @@ def manhattan(state):
     Output:   sum of the Manhattan distances of all tiles to their goal positions
     Function: Heuristic h2. For every tile: |row difference| + |column difference|.
               The empty field is not counted.
+    Cost:     O(1) - 9 fields, but a bit more work per field than hamming()
+              (divmod, dictionary lookup, two abs())
     """
     total = 0
     for i, tile in enumerate(state):

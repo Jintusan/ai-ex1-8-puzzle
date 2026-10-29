@@ -16,6 +16,7 @@ def reconstruct_path(parent, state):
     Output:   list of states from the start state to the goal state
     Function: Follows the parent links backwards from the goal to the start
               and then reverses the list.
+    Cost:     O(d) - d = length of the solution
     """
     path = []
     while state is not None:
@@ -34,6 +35,9 @@ def astar(start, heuristic):
               expanded - number of expanded nodes (measure for memory effort)
     Function: Always expands the state with the lowest f = g + h, where
               g = moves made so far and h = estimated moves still needed.
+    Cost:     Time O(N log N), memory O(N), where N = number of generated nodes.
+              Worst case O(b^d), limited by the 181,440 reachable states.
+              With a heuristic it is about O((b*)^d), b* = effective branching factor.
     """
     counter = 0                     # tie-breaker: if f is equal, the older entry comes first
     frontier = [(heuristic(start), counter, start)]   # waiting list: (f, counter, state)

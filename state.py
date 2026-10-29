@@ -16,6 +16,7 @@ def successors(state):
     Output:   list of all states reachable with exactly one move
     Function: Moves the empty field up, down, left or right,
               as long as it stays inside the 3x3 grid.
+    Cost:     O(1) - at most 4 moves, each copies a tuple of 9 numbers
     """
     result = []
     empty = state.index(0)              # position of the empty field (0 to 8)
@@ -38,6 +39,7 @@ def show(state):
     Input:    state - tuple of 9 numbers
     Output:   none (prints the puzzle to the terminal)
     Function: Prints the state as a 3x3 grid, the empty field as _
+    Cost:     O(1) - always 9 fields
     """
     for i in range(0, 9, 3):
         row = state[i:i + 3]
@@ -51,6 +53,7 @@ def inversions(state):
     Output:   number of inversions (integer)
     Function: Counts all pairs where a bigger number comes before
               a smaller one. The empty field (0) is ignored.
+    Cost:     O(n^2) for n tiles; for the 8-puzzle n = 8, so 28 comparisons
     """
     numbers = [x for x in state if x != 0]   # leave out the 0
     count = 0
@@ -67,6 +70,7 @@ def is_solvable(state):
     Output:   True if the state is solvable, otherwise False
     Function: A state is solvable if its number of inversions has the
               same parity (even/odd) as the goal state.
+    Cost:     O(1) - two inversion counts with 28 comparisons each
     """
     return inversions(state) % 2 == inversions(GOAL) % 2
 
@@ -76,6 +80,8 @@ def random_state():
     Input:    none
     Output:   a random, solvable state (not equal to the goal)
     Function: Shuffles the numbers 0-8 until the result is solvable.
+    Cost:     O(1) on average - half of all arrangements are solvable,
+              so about 2 tries are needed
     """
     while True:
         numbers = list(range(9))    # [0, 1, 2, ..., 8]

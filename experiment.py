@@ -27,6 +27,8 @@ def run_experiment(n_runs, seed):
     Function: Creates n_runs random solvable start states and solves each one
               with every heuristic. Measures expanded nodes, run time and
               solution length for every run.
+    Cost:     n_runs x 2 calls of astar() - this is where almost all
+              of the run time is spent
     """
     random.seed(seed)
     starts = [random_state() for _ in range(n_runs)]   # same puzzles for both heuristics
@@ -53,6 +55,7 @@ def print_table(results):
     Output:   none (prints a table to the terminal)
     Function: Calculates mean and standard deviation of expanded nodes
               and run time for every heuristic and prints them.
+    Cost:     O(n_runs) per heuristic
     """
     print("\n{:<10} {:>15} {:>15} {:>12} {:>12} {:>10}".format(
         "Heuristic", "Nodes mean", "Nodes std", "Time mean", "Time std", "Moves"))
@@ -71,6 +74,7 @@ def save_csv(results, filename):
     Output:   none (writes a file)
     Function: Saves all single measurements to a CSV file, so they can be
               used later for the documentation (e.g. in Excel).
+    Cost:     O(n_runs) per heuristic - one line per measurement
     """
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
