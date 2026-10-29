@@ -45,9 +45,15 @@ python experiment.py     # the full experiment, takes about 1-3 minutes
 
 ## Results (100 random solvable puzzles, seed 42)
 
-| Heuristic | Nodes mean | Nodes std | Time mean | Time std | Moves |
-|---|---|---|---|---|---|
-| Hamming | 18207.1 | 17047.2 | 0.1209 s | 0.1283 s | 22.4 |
-| Manhattan | 1722.0 | 1733.4 | 0.0136 s | 0.0155 s | 22.4 |
+Values calculated from `results.csv` in this repository.
 
+| Heuristic | Nodes mean | Nodes std | Nodes variance | Time mean | Time std | Time variance | Moves |
+|---|---|---|---|---|---|---|---|
+| Hamming | 18207.1 | 17047.2 | 290607840 | 0.0511 s | 0.0485 s | 0.002348 s² | 22.4 |
+| Manhattan | 1722.0 | 1733.4 | 3004680 | 0.0059 s | 0.0060 s | 0.000037 s² | 22.4 |
+
+Manhattan expands about 10.6 times fewer nodes than Hamming and is about 8.7 times faster.
+Both heuristics found solutions of the same length for all 100 puzzles.
+
+The variance is the square of the standard deviation.
 Node counts and moves are always the same with the same seed. Run times depend on the computer.
